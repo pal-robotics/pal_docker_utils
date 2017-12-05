@@ -15,5 +15,4 @@ nvidia-docker run -it \
 -v $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK) -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
 --net host --privileged \
 -v "$HOME/exchange:/home/user/exchange" \
---mount source=erbium-volume,target=/home/user/ \
 $*
