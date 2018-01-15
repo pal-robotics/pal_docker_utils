@@ -1,7 +1,9 @@
 This repo contains scripts and documentation for making using docker simpler.
 
 # Requirements
-## Nvidia-docker
+## nvidia-docker
+**Only if your computer has an NVIDIA GPU**
+
 Some of these scripts use https://github.com/NVIDIA/nvidia-docker to be able 
 to have graphic hardware acceleration.
 
@@ -11,7 +13,9 @@ We use version [1.0 of nvidia-docker](https://github.com/NVIDIA/nvidia-docker/wi
 ## scripts/pal\_docker.sh
 
 This script launches a docker container with the following features:
-- nvidia docker for hardware acceleration
+- Expose xhost, this can compromise the access control to your X server. 
+Read [this](http://wiki.ros.org/docker/Tutorials/GUI#The_simple_way)
+- nvidia docker for hardware acceleration if it is installed
 - It captures the user id and group id, and runs the docker as that user 
 ([more info](https://denibertovic.com/posts/handling-permissions-with-docker-volumes/)).
 - If the env variable SSH_AUTH_SOCK is available, it uses it to forward 
