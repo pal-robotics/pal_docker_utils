@@ -15,7 +15,19 @@ fi
 # Settings required for having nvidia GPU acceleration inside the docker
 DOCKER_GPU_ARGS="--env DISPLAY --env QT_X11_NO_MITSHM=1 --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw"
 
-nvidia-docker run -it \
+which nvidia-docker > /dev/null
+HAS_NVIDIA_DOCKER=$?
+if [ $HAS_NVIDIA_DOCKER -eq 0 ]; then
+  DOCKER_COMMAND=nvidia-docker
+else
+  echo "Running without nvidia-docker, if you have an NVidia card you may need it"\
+  "to have GPU acceleration"
+  DOCKER_COMMAND=docker
+fi
+
+xhost + 
+
+$DOCKER_COMMAND run -it \
 $DOCKER_USER_ARGS \
 $DOCKER_GPU_ARGS \
 $DOCKER_SSH_AUTH_ARGS \
