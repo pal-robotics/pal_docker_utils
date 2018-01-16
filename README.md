@@ -33,7 +33,5 @@ Examples:
 
 `pal_docker.sh my_docker_image`
 
-`pal_docker.sh my_docker_image bash`
-
-`pal_docker.sh my_docker_image bash`
+`pal_docker.sh -it my_docker_image bash`
 
