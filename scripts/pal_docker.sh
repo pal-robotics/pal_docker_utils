@@ -33,4 +33,4 @@ $DOCKER_GPU_ARGS \
 $DOCKER_SSH_AUTH_ARGS \
 --net host --privileged \
 -v "$HOME/exchange:/home/user/exchange" \
-$*
+"$@"
