@@ -33,4 +33,5 @@ $DOCKER_GPU_ARGS \
 $DOCKER_SSH_AUTH_ARGS \
 --net host --privileged \
 -v "$HOME/exchange:/home/user/exchange" \
+-v /var/run/docker.sock:/var/run/docker.sock \
 "$@"
