@@ -15,7 +15,7 @@ fi
 # Settings required for having nvidia GPU acceleration inside the docker
 DOCKER_GPU_ARGS="--env DISPLAY --env QT_X11_NO_MITSHM=1 --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw"
 
-dpkg -s nvidia-container-toolkit &> /dev/null
+dpkg -l | grep nvidia-container-runtime &> /dev/null
 HAS_NVIDIA_RUNTIME=$?
 which nvidia-docker > /dev/null
 HAS_NVIDIA_DOCKER=$?
