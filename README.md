@@ -4,10 +4,21 @@ This repo contains scripts and documentation for making using docker simpler.
 ## nvidia-docker
 **Only if your computer has an NVIDIA GPU**
 
-Some of these scripts use https://github.com/NVIDIA/nvidia-docker to be able 
-to have graphic hardware acceleration.
+If you have an NVIDIA GPU, you can install the nvidia-docker to enable graphic 
+hardware acceleration inside PAL containers.
 
-We use version [1.0 of nvidia-docker](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-1.0))
+We use version 2.0 of nvidia-docker, and to to install it, just follow the 
+[instructions](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)).
+
+**Note**
+
+To validate the installation, at the end of the instructions page it is suggested 
+to run a docker with nvidia CUDA. However this needs about 1GB of download and 
+unless you are planning to use CUDA in a docker that is quite unnecessary. 
+
+Instead of doing that, you can run pal_docker.sh with any of our images and once 
+inside, execute `glxinfo | grep render` and you should have a line that says: 
+**direct rendering: Yes** . If this is the case, the graphic hardware accelration is working.
 
 # Utilities
 ## scripts/pal\_docker.sh
@@ -33,5 +44,5 @@ Examples:
 
 `pal_docker.sh my_docker_image`
 
-`pal_docker.sh -it my_docker_image bash`
+`pal_docker.sh -it my_docker_image bash` (*ferrum*)
 
