@@ -29,13 +29,19 @@ else
   DOCKER_COMMAND="docker run"
 fi
 
-xhost + 
+DOCKER_NETWORK_ARGS="--net host"
+if [[ "$@" == *"--net "* ]]; then
+    DOCKER_NETWORK_ARGS=""
+fi
+
+xhost +
 
 $DOCKER_COMMAND \
 $DOCKER_USER_ARGS \
 $DOCKER_GPU_ARGS \
 $DOCKER_SSH_AUTH_ARGS \
---net host --privileged \
+$DOCKER_NETWORK_ARGS \
+--privileged \
 -v "$HOME/exchange:/home/user/exchange" \
 -v /var/run/docker.sock:/var/run/docker.sock \
 "$@"
