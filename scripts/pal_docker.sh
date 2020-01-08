@@ -15,12 +15,17 @@ fi
 # Settings required for having nvidia GPU acceleration inside the docker
 DOCKER_GPU_ARGS="--env DISPLAY --env QT_X11_NO_MITSHM=1 --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw"
 
-dpkg -l | grep nvidia-container-runtime &> /dev/null
-HAS_NVIDIA_RUNTIME=$?
+dpkg -l | grep nvidia-container-toolkit &> /dev/null
+HAS_NVIDIA_TOOLKIT=$?
 which nvidia-docker > /dev/null
 HAS_NVIDIA_DOCKER=$?
-if [ $HAS_NVIDIA_RUNTIME -eq 0 ]; then
-  DOCKER_COMMAND="docker run --runtime=nvidia"
+if [ $HAS_NVIDIA_TOOLKIT -eq 0 ]; then
+  docker_version=`docker version --format '{{.Client.Version}}' | cut -d. -f1`
+  if [ $docker_version -ge 19 ]; then
+	  DOCKER_COMMAND="docker run --gpus all"
+  else
+	  DOCKER_COMMAND="docker run --runtime=nvidia"
+  fi
 elif [ $HAS_NVIDIA_DOCKER -eq 0 ]; then
   DOCKER_COMMAND="nvidia-docker run"
 else
