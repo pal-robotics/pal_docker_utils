@@ -8,7 +8,7 @@ If you have an NVIDIA GPU, you can install the nvidia-docker to enable graphic
 hardware acceleration inside PAL containers.
 
 We use version 2.0 of nvidia-docker, and to to install it, just follow the 
-[instructions](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)).
+[instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
 
 **Note**
 
