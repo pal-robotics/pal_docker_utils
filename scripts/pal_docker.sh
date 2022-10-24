@@ -9,7 +9,7 @@ DOCKER_USER_ARGS="--env LOCAL_USER_ID --env LOCAL_GROUP_ID --env LOCAL_GROUP_NAM
 # Variables for forwarding ssh agent into docker container
 SSH_AUTH_ARGS=""
 if [ ! -z $SSH_AUTH_SOCK ]; then
-    DOCKER_SSH_AUTH_ARGS="-v $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK) -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+    DOCKER_SSH_AUTH_ARGS="-v $SSH_AUTH_SOCK:/run/host_ssh_auth_sock -e SSH_AUTH_SOCK=/run/host_ssh_auth_sock"
 fi
 
 # Settings required for having nvidia GPU acceleration inside the docker
