@@ -4,7 +4,9 @@
 export LOCAL_USER_ID=`id -u $USER`
 export LOCAL_GROUP_ID=`id -g $USER`
 export LOCAL_GROUP_NAME=`id -gn $USER`
-DOCKER_USER_ARGS="--env LOCAL_USER_ID --env LOCAL_GROUP_ID --env LOCAL_GROUP_NAME"
+# Allow customization for docker args
+# For instance, to remove the container when it exits: DOCKER_USER_ARGS='--rm' pal_docker.sh ...
+DOCKER_USER_ARGS="$DOCKER_USER_ARGS --env LOCAL_USER_ID --env LOCAL_GROUP_ID --env LOCAL_GROUP_NAME"
 
 # Variables for forwarding ssh agent into docker container
 SSH_AUTH_ARGS=""
